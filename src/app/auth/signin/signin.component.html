@@ -1,0 +1,44 @@
+
+<mat-card class="example-card spacer container col-md-4">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title><h2>Connexion</h2></mat-card-title>
+
+  </mat-card-header>
+  <mat-card-content>
+
+    <li [ngClass]="{'list-group-item': true,
+                     'list-group-item-danger': mode===1}">
+
+      <form [formGroup]="signInForm" (ngSubmit)="onLogin()">
+
+        <div class="example-container">
+          <mat-form-field>
+            <input  matInput placeholder="Nom Utilisateur" id="username"  formControlName="username"  name="username"  required>
+
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <mat-form-field>
+            <input  matInput placeholder="Mot de passe" id="password" name="password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
+
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-success" type="submit" [disabled]="!signInForm.valid" >Connexion</button>
+          </div>
+
+        </div>
+      </form>
+
+    </li>
+    <p class="text-danger">{{errorMessage}}</p>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="btn btn-danger leu" type="submit">Mot de passe oublie</button>
+  </mat-card-actions>
+</mat-card>
+

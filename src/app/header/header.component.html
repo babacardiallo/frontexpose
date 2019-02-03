@@ -1,0 +1,29 @@
+
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo justify-content-between">
+
+<mdb-navbar-brand>
+  <a class="navbar-brand" href="#" >
+    <img src="assets/images/logo.png" height="70"  alt="logo">
+  </a>
+</mdb-navbar-brand>
+
+  <links class="row col-md-12">
+    <ul class="col-md-11"></ul>
+      <ul class="navbar-nav ml-auto col-md-1 ">
+
+        <li>
+        <button routerLink="auth/signin" mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" mdbWavesEffect>Connexion</button>
+        </li>
+
+        <li >
+        <button routerLink="auth/signup" mdbBtn color="danger" outline="true" size="sm" class="my-0 waves-light" mdbWavesEffect>Inscription</button>
+        </li>
+
+        <li *ngIf="authservice.isLogin()===true">
+          <button routerLink="auth/signup" mdbBtn color="danger" outline="true" size="sm" class="my-0 waves-light"
+            mdbWavesEffect>Deconnexion</button>
+        </li>
+      </ul>
+  </links>
+</mdb-navbar>
+
