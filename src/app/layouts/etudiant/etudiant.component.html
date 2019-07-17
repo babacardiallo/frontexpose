@@ -1,0 +1,71 @@
+<button mdbBtn (click)="logOut()" color="danger"  class="z-depth-4" type="submit">
+  <mdb-icon fas icon="sign-out-alt"></mdb-icon>
+</button>
+<div class="row col-md-12">
+
+  <div class="container col-md-5">
+    <form  *ngIf="ispost===false"[formGroup]="ajouterForm" (ngSubmit)="SaveEtudiant()" class="text-center border border-light p-5">
+
+      <p class="h4 mb-4">Ajout</p>
+      <input type="text" id="defaultRegisterFormFirstName" class="form-control mb-4" name="nom" formControlName="nom" placeholder="Nom">
+      <input type="text" id="defaultRegisterFormLastName" class="form-control mb-4" name="prenom" formControlName="prenom" placeholder="Prenom">
+      <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" name="email" formControlName="email" placeholder="E-mail">
+
+      <button mdbBtn color="info" block="true" class="my-4 z-depth-4" type="submit">Ajouter</button>
+
+
+
+    </form>
+    <form *ngIf="ispost===true"  class="text-center border border-light p-5">
+
+      <p class="h4 mb-4">Modifier</p>
+      <input type="text" class="form-control mb-4" name="nom" [(ngModel)]="nom" placeholder="Nom">
+      <input type="text"  class="form-control mb-4" name="prenom" [(ngModel)]="prenom" placeholder="Prenom">
+      <input type="email"  class="form-control mb-4" name="email" [(ngModel)]="email" placeholder="E-mail">
+
+      <button mdbBtn color="info" block="true" class="my-4 z-depth-4" (click)="UpdateEtudiant()" type="submit">Ajouter</button>
+
+
+
+    </form>
+    <!-- Default form register -->
+
+
+
+  </div>
+
+
+  <div class="container col-md-7" >
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+         <!-- <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput>
+          <label for="search">Search</label>-->
+        </div>
+      </div>
+    </div>
+    <table mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let el of etudiantService.lisEtudiants; let i = index">
+        <th scope="row">{{el.id}}</th>
+        <td class="red-text">{{el.prenom}}</td>
+        <td>{{el.nom}}</td>
+        <td>{{el.email}}</td>
+        <td>
+          <button type="button" class="z-depth-4" (click)="deleteEtudiant(el)" mdbBtn color="danger" mdbWavesEffect>  <mdb-icon fas icon="trash"></mdb-icon></button>
+          <button type="button" class="z-depth-4" (click)="EditEtudiant(el)" mdbBtn color="warning" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- Default form register -->

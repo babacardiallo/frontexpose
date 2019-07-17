@@ -46,14 +46,10 @@ export class SigninComponent implements OnInit {
       this.authservice.login(this.user)
         .subscribe(resp => {
             const jwt = resp.headers.get('Authorization');
+            console.log("token=>", jwt);
             this.authservice.saveToken(jwt);
             localStorage.setItem('usernamespringba', username);
-            if (this.authservice.isAdmin() === true) {
-              this.router.navigateByUrl('accueil/admin');
-            } else {
-              this.router.navigateByUrl('accueil/secretaire');
-
-            }
+            this.router.navigate(['etudiant']);
 
         },
              err => {

@@ -53,13 +53,9 @@ export class SignupComponent implements OnInit {
                     .subscribe(respo => {
                             const jwt = respo.headers.get('Authorization');
                             this.authservice.saveToken(jwt);
+                            console.log("token=>", jwt);
                             localStorage.setItem('usernamespringba', username);
-                            if (this.authservice.isAdmin() === true) {
-                              this.router.navigateByUrl('accueil/admin');
-                            } else {
-                              this.router.navigateByUrl('accueil/secretaire');
-
-                            }
+                            this.router.navigate(['etudiant']);
                       },
                         error => {
                             this.errorMessage = 'probleme lors de la tentative de connection';
