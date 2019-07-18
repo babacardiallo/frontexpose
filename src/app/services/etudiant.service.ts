@@ -8,7 +8,7 @@ export class EtudiantService {
 
   public lisEtudiants: any = [];
 
-  private host: string = 'http://localhost:8080';
+  private host: string = 'http://192.168.137.146:8087';
 
   constructor(private http: HttpClient) { }
 

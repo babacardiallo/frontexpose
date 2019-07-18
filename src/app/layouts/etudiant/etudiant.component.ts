@@ -3,6 +3,7 @@ import {EtudiantService} from "../../services/etudiant.service";
 import {MatDialog} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class EtudiantComponent implements OnInit {
 
-  headElements = ['ID', 'Prenom', 'Nom', 'Email', 'Action'];
+  headElements = [];
 
   public ispost = false;
 
@@ -26,10 +27,16 @@ export class EtudiantComponent implements OnInit {
 
   public etudiant;
 
-  constructor(public etudiantService: EtudiantService, public dialog: MatDialog, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(public etudiantService: EtudiantService, public authservice: AuthService, public dialog: MatDialog, private formBuilder: FormBuilder, private router: Router) { }
 
 
   ngOnInit() {
+    if(this.authservice.isAdmin()===true){
+      this.headElements = ['ID', 'Prenom', 'Nom', 'Email', 'Action'];
+    }
+    else{
+      this.headElements = ['ID', 'Prenom', 'Nom', 'Email'];
+    }
     this.initForm();
     this.etudiantService.getList().subscribe(response =>{
       this.etudiantService.lisEtudiants = response;

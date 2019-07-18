@@ -7,7 +7,7 @@ import { JwtHelper } from 'angular2-jwt';
 })
 export class AuthService {
 
-  private host: string = 'http://localhost:8080';
+  private host: string = 'http://192.168.137.146:8087';
   private jwtToken = null;
   private roles: Array<any>;
 
@@ -22,6 +22,7 @@ export class AuthService {
     localStorage.setItem('tokenspringba', jwt);
     const jwthelper = new JwtHelper();
     this.roles = jwthelper.decodeToken(jwt).roles;
+    console.log("error=>", jwthelper.decodeToken(jwt));
   }
 
   loadToken() {
@@ -47,6 +48,9 @@ export class AuthService {
   }
 
   isAdmin() {
+    const relai  = localStorage.getItem('tokenspringba');
+    const jwthelper = new JwtHelper();
+    this.roles = jwthelper.decodeToken(relai).roles;
     for (const r of this.roles) {
        if (r.authority === 'ADMIN') {
            return true;

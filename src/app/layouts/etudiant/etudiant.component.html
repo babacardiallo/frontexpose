@@ -58,8 +58,8 @@
         <td>{{el.nom}}</td>
         <td>{{el.email}}</td>
         <td>
-          <button type="button" class="z-depth-4" (click)="deleteEtudiant(el)" mdbBtn color="danger" mdbWavesEffect>  <mdb-icon fas icon="trash"></mdb-icon></button>
-          <button type="button" class="z-depth-4" (click)="EditEtudiant(el)" mdbBtn color="warning" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
+          <button *ngIf="authservice.isAdmin()==true" type="button" class="z-depth-4" (click)="deleteEtudiant(el)" mdbBtn color="danger" mdbWavesEffect>  <mdb-icon fas icon="trash"></mdb-icon></button>
+          <button *ngIf="authservice.isAdmin()==true" type="button" class="z-depth-4" (click)="EditEtudiant(el)" mdbBtn color="warning" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon></button>
 
         </td>
       </tr>
